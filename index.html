@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- <link rel="stylesheet" href="css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="css/styles.css">
+    <title>Table Tennis Classic</title>
+    <script>
+        var canvas;
+        var canvasContext;
+        var ballX = 50;
+        var ballSpeedX = 5
+
+        window.onload = function() {
+            
+            canvas = document.getElementById('gameCanvas');
+            canvasContext = canvas.getContext('2d');
+
+            var framesPerSecond = 30
+            setInterval(function() {
+                moveEverything();
+                drawEverything();
+            }, 1000/framesPerSecond);
+        }
+        
+        function moveEverything() {
+            ballX = ballX + ballSpeedX;
+
+            if(ballX < 0) {
+                ballSpeedX = -ballSpeedX;
+            }
+
+            if(ballX > canvas.width) {
+                ballSpeedX = -ballSpeedX;
+            }
+        }
+
+        function drawEverything() {
+            canvasContext.fillStyle = 'green';
+            canvasContext.fillRect(0, 0, canvas.width, canvas.height);
+            canvasContext.fillStyle = 'white';
+            canvasContext.fillRect(0, 230, 10, 100);
+            canvasContext.fillStyle = 'white';
+            canvasContext.fillRect(ballX, 100, 10, 10);
+        }
+    </script>
+</head>
+<body>
+    <h3>Table Tennis Classic</h3>
+    <canvas id="gameCanvas" width="800" height="600"></canvas>
+
+
+    <!-- JAVASCRIPT FILES -->
+    <!-- <script src="https://code.jquery.com/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script> -->
+    <!-- <script src="js/script.js"></script> -->
+</body>
+</html>
